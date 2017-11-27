@@ -1,0 +1,93 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'js/jquery-1.12.4.min.js' %}" rel="stylesheet">
+    <link href="{% static 'css/aynu.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-tab">
+    <div class="row">
+      <div class="col-md-12"  style="background-color: #f2f5f4">
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1" id="job-name">
+            <h2>{{ ob_list.job_name }}</h2>
+    {#        薪水#}
+            <span class="money">
+                {% if ob_list.job_smoney >= 100 %}
+                    {% widthratio ob_list.job_smoney 10 1 %}k - {% widthratio ob_list.job_emoney 10 1 %}k
+                {% elif ob_list.job_emoney == 0 %}面议
+                {% else %}
+                    {{ ob_list.job_smoney }}K - {{ ob_list.job_emoney }}k
+                {% endif %}
+            </span>
+          <span>/</span>
+    {#        公司地点#}
+            <span><em>{{ob_list.job_address }}</em></span>
+          <span>/</span>
+    {#        工作经验#}
+           <span>经验
+               {% if ob_list.job_eyear == 0 and ob_list.job_syear == 0%}不限
+                   {% elif ob_list.job_syear == ob_list.job_eyear %}{{ ob_list.job_eyear }}年
+               {% else %}
+                   {{ ob_list.job_syear }}-{{ ob_list.job_eyear }}年
+               {% endif %}
+           </span>
+           <span>/</span>
+    {#        学历#}
+            <span>
+                {% if ob_list.job_degree == ''%}不限
+                {% else %}
+                    {{ ob_list.job_degree }}
+                {% endif %}
+            </span>
+    {#        工作标签#}
+            <span style= "display:block;margin-top: 10px">
+                {% if work.job_tag == '0' %}
+                    工作氛围好
+                {% elif work.job_tag == '' %}
+                    工作氛围好
+                {% else %}
+                    {{ work.job_tag|cut:"'" }}
+                {% endif %}
+
+            </span>
+    {#        发布日期#}
+            <span class="format-time" style="display:block;font-size: 14px;margin-top: 10px">
+                {{ ob_list.job_date_pub }}发布于AYNU
+            </span>
+
+          </div>
+        </div>
+          <br>
+
+      </div>
+
+    </div>
+      <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+          <h3>公司简介</h3>
+          公司类型：{{ ob_list.job_comp_type }}<br>
+          公司规模：{% if  ob_list.job_comp_snum == ob_list.job_comp_enum  %}
+                    {{ ob_list.job_comp_enum }}
+          {% else %}
+                {{ ob_list.job_comp_snum }}-{{ ob_list.job_comp_enum }}
+                   {% endif %}人<p>
+          公司主营：{{ ob_list.job_business }}
+          <h3 style="color: #333;">职位描述</h3>
+          {{ ob_list.job_desc|cut:"'" }}
+          <h3>职位详情</h3>
+          <a href="{{ ob_list.job_url }}">{{ ob_list.job_url }}</a>
+          <h3>投递简历</h3>
+          <a href="javascript: alert('投递成功!')" >快速投递</a>
+          <hr>
+          <br><br>
+      </div>
+      </div>
+</div>
+</body>
+</html>

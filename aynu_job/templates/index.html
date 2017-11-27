@@ -1,0 +1,48 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'js/jquery-1.12.4.min.js' %}" rel="stylesheet">
+</head>
+<body>
+
+
+
+<div class="row" style="margin-top: 40px">
+{#  百度logo#}
+  <div class="col-md-2 col-md-offset-4">
+      <img src="{% static 'imges/baidu.png' %}" width="270" height="129">
+  </div><!-- /.col-lg-6 -->
+    <br>
+{#  搜索框#}
+
+<form class="form-horizontal" role="form" action="{% url 'work_search' 1 %}", method="get">
+    {% csrf_token %}
+  <div class="col-md-6 col-md-offset-3">
+      <input class="form-control input-lg" type="text" name="search">
+      <span style="font-size: 10px;color: #737373">数据来自于：
+          <a href="http://www.51job.com/" target="_blank">前程无忧</a>
+          <a href="https://www.lagou.com/" target="_blank">拉勾网</a>
+          <a href="http://bj.58.com/" target="_blank">58同城</a>
+          <a href="http://www.chinahr.com/beijing/" target="_blank">中华英才网</a>
+          <a href="http://bj.ganji.com/" target="_blank">赶集网</a>
+          <a href="https://www.liepin.com/" target="_blank">猎聘网</a>
+          <a href="http://www.zhaopin.com/" target="_blank">智联招聘</a>
+          <a href="http://www.zhipin.com/" target="_blank">boss直聘</a>
+      </span>
+  </div>
+
+  <div class="col-md-2 col-md-offset-5">
+      <br>
+      <button type="submit" class="btn btn-info btn-lg">搜索一下</button>
+{#      <button class="btn btn-info btn-lg">详细搜索</button>#}
+  </div>
+
+</form>
+</div><!-- /.row -->
+
+</body>
+</html>

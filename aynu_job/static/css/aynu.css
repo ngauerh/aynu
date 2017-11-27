@@ -1,0 +1,16 @@
+em{
+    font-style: normal;
+}
+.add{
+    color: #00b38a;
+}
+.format-time{
+    color: #999;
+}
+.money{
+    color: #fd5f39;
+}
+#job-name{
+    font-size: 18px;
+    background-color: #f2f5f4;
+}
